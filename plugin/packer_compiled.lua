@@ -123,7 +123,7 @@ _G.packer_plugins = {
     url = "https://github.com/nvimdev/dashboard-nvim"
   },
   ["dracula.nvim"] = {
-    config = { "\27LJ\2\nz\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\fplugins\1\0\0\1\0\2\26indent-blankline.nvim\1\23todo-comments.nvim\1\nsetup\fdracula\frequire\0" },
+    config = { "\27LJ\2\nz\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\fplugins\1\0\0\1\0\2\23todo-comments.nvim\1\26indent-blankline.nvim\1\nsetup\fdracula\frequire\0" },
     loaded = true,
     path = "/home/Jaskir/.local/share/nvim/site/pack/packer/start/dracula.nvim",
     url = "https://github.com/maxmx03/dracula.nvim"
@@ -157,6 +157,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/Jaskir/.local/share/nvim/site/pack/packer/start/lsp-zero.nvim",
     url = "https://github.com/VonHeikemen/lsp-zero.nvim"
+  },
+  ["lsp_signature.nvim"] = {
+    loaded = true,
+    path = "/home/Jaskir/.local/share/nvim/site/pack/packer/start/lsp_signature.nvim",
+    url = "https://github.com/ray-x/lsp_signature.nvim"
   },
   ["lualine.nvim"] = {
     loaded = true,
@@ -266,7 +271,7 @@ _G.packer_plugins = {
 time([[Defining packer_plugins]], false)
 -- Config for: dracula.nvim
 time([[Config for dracula.nvim]], true)
-try_loadstring("\27LJ\2\nz\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\fplugins\1\0\0\1\0\2\26indent-blankline.nvim\1\23todo-comments.nvim\1\nsetup\fdracula\frequire\0", "config", "dracula.nvim")
+try_loadstring("\27LJ\2\nz\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\fplugins\1\0\0\1\0\2\23todo-comments.nvim\1\26indent-blankline.nvim\1\nsetup\fdracula\frequire\0", "config", "dracula.nvim")
 time([[Config for dracula.nvim]], false)
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
