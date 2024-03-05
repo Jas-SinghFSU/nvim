@@ -26,8 +26,8 @@ return require('packer').startup(function(use)
         -- or                            , branch = '0.1.x',
         requires = { { 'nvim-lua/plenary.nvim' } }
     }
-    use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
-    use 'nvim-treesitter/playground'
+    -- use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
+    -- use 'nvim-treesitter/playground'
     use {
         'nvim-tree/nvim-tree.lua',
         requires = {
@@ -55,7 +55,6 @@ return require('packer').startup(function(use)
             { 'hrsh7th/cmp-nvim-lsp' },
             { 'hrsh7th/cmp-nvim-lua' },
             { 'L3MON4D3/LuaSnip' },
-            { 'rafamadriz/friendly-snippets' },
         }
     }
     use {
@@ -101,5 +100,29 @@ return require('packer').startup(function(use)
             }
         end,
         requires = { 'nvim-tree/nvim-web-devicons' }
+    }
+    use {
+        'kawre/leetcode.nvim',
+        run = ':TSUpdate html',
+        requires = {
+            'nvim-telescope/telescope.nvim',
+            'nvim-lua/plenary.nvim', -- required by telescope
+            'MunifTanjim/nui.nvim',
+
+            -- optional
+            'nvim-treesitter/nvim-treesitter',
+            'rcarriga/nvim-notify',
+            'kyazdani42/nvim-web-devicons', -- previously nvim-tree/nvim-web-devicons
+        },
+        config = function()
+            require('leetcode').setup {
+                lang = 'javascript'
+            }
+        end
+    }
+    use { 'karb94/neoscroll.nvim',
+        config = function()
+            require('neoscroll').setup {}
+        end
     }
 end)
