@@ -1,1 +1,1 @@
-require("jaskir")
+require('plugin_loader')

@@ -1,11 +1,7 @@
-local ls = require("luasnip")
-
-vim.g.mapleader = " "
-
 -- Git blame binds
 vim.keymap.set('n', '<leader>gbo', '<cmd>:GitBlameOpenFileURL<CR>', { silent = true })
 
-vim.keymap.set('n', '<C-n>', ':NvimTreeToggle<CR>', { silent = true, noremap = true })
+vim.keymap.set('n', '<leader>n', ':NvimTreeToggle<CR>', { silent = true, noremap = true })
 vim.keymap.set('n', '<C-h>', '<C-w>h', { noremap = true })
 vim.keymap.set('n', '<C-j>', '<C-w>j', { noremap = true })
 vim.keymap.set('n', '<C-k>', '<C-w>k', { noremap = true })
@@ -62,13 +58,13 @@ vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
 end)
 
--- LuaSnip snippet keybinds
-vim.keymap.set({ "i" }, "<C-K>", function() ls.expand() end, { silent = true })
-vim.keymap.set({ "i", "s" }, "<C-l>", function() ls.jump(1) end, { silent = true })
-vim.keymap.set({ "i", "s" }, "<C-j>", function() ls.jump(-1) end, { silent = true })
+--  LuaSnip snippet keybinds
+vim.keymap.set({ "i" }, "<C-K>", function() LS.expand() end, { silent = true })
+vim.keymap.set({ "i", "s" }, "<C-l>", function() LS.jump(1) end, { silent = true })
+vim.keymap.set({ "i", "s" }, "<C-j>", function() LS.jump(-1) end, { silent = true })
 
 vim.keymap.set({ "i", "s" }, "<C-E>", function()
-    if ls.choice_active() then
-        ls.change_choice(1)
+    if LS.choice_active() then
+        LS.change_choice(1)
     end
 end, { silent = true })
