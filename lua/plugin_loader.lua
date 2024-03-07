@@ -27,6 +27,17 @@ require('lazy').setup({ {
     dependencies = { { 'nvim-lua/plenary.nvim' } },
     config = function()
         local builtin = require('telescope.builtin')
+        local tele = require('telescope')
+
+        tele.setup({
+            "node_modules/.*",
+            "yarn.lock",
+            "package%-lock.json",
+            "lazy-lock.json",
+            "target/.*",
+            ".git/.*",
+            ".*/package%-lock.json",
+        })
         vim.keymap.set('n', '<leader>pf', builtin.find_files, {})
         vim.keymap.set('n', '<C-p>', builtin.git_files, {})
         vim.keymap.set('n', '<leader>ps', function()
@@ -331,7 +342,6 @@ require('lazy').setup({ {
     }
 }, {
     'akinsho/bufferline.nvim',
-    tag = "*",
     dependencies = 'nvim-tree/nvim-web-devicons',
     config = function()
         vim.opt.termguicolors = true
@@ -366,7 +376,6 @@ require('lazy').setup({ {
     end
 }, {
     "akinsho/toggleterm.nvim",
-    tag = '*',
     config = function()
         -- Calculate center window position
         local function center_win(width, height)
@@ -469,13 +478,32 @@ require('lazy').setup({ {
     end
 }, {
     'kevinhwang91/nvim-ufo',
-    dependencies = 'kevinhwang91/promise-async',
+    dependencies = { {
+        'kevinhwang91/promise-async'
+    },
+    {
+        "luukvbaal/statuscol.nvim",
+        config = function()
+            local builtin = require("statuscol.builtin")
+            require("statuscol").setup(
+                {
+                    relculright = true,
+                    segments = {
+                        { text = { builtin.foldfunc },      click = "v:lua.ScFa" },
+                        { text = { "%s" },                  click = "v:lua.ScSa" },
+                        { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" }
+                    }
+                }
+            )
+        end
+
+    } },
     config = function()
         vim.o.foldcolumn = '1' -- '0' is not bad
         vim.o.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value
         vim.o.foldlevelstart = 99
         vim.o.foldenable = true
-        vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+        vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 
         -- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
         vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
@@ -541,7 +569,11 @@ function ColorMeUp(color)
 end
 
 ColorMeUp()
-vim.cmd('highlight FoldColumn  guibg=#282A36')
+vim.cmd('highlight FoldColumn  guibg=#282A36 guifg=#6272A4 ')
 
 LS = require('luasnip')
 CONFORM = require('conform')
+
+vim.treesitter.query.set("javascript", "injections", "")
+vim.treesitter.query.set("typescript", "injections", "")
+vim.treesitter.query.set("lua", "injections", "")
