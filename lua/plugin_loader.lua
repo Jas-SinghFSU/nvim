@@ -63,6 +63,17 @@ require('lazy').setup({ {
         })
         vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
     end
+}, {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    build = "cd app && npm install",
+    init = function()
+        vim.g.mkdp_filetypes = { "markdown" }
+        -- vim.g.mkdp_browser = '/usr/share/applications/microsoft-edge.desktop'
+    end,
+    ft = { "markdown" },
+}, {
+    "sindrets/diffview.nvim"
 },
     {
         'nvim-treesitter/nvim-treesitter',
@@ -92,46 +103,59 @@ require('lazy').setup({ {
         end
     },
     {
-        'nvim-tree/nvim-tree.lua',
-        dependencies = { 'nvim-tree/nvim-web-devicons' -- optional
+        "nvim-neo-tree/neo-tree.nvim",
+        branch = "v3.x",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+            "MunifTanjim/nui.nvim",
+            -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+
         },
         config = function()
-            -- disable netrw at the very start of your init.lua
-            vim.g.loaded_netrw = 1
-            vim.g.loaded_netrwPlugin = 1
+            require("neo-tree").setup({
+                close_if_last_window = false,
+            })
+        end
+    },
+    {
+        "NeogitOrg/neogit",
+        dependencies = {
+            "nvim-lua/plenary.nvim",  -- required
+            "sindrets/diffview.nvim", -- optional - Diff integration
 
-            -- optionally enable 24-bit colour
-            vim.opt.termguicolors = true
+            -- Only one of these is needed, not both.
+            "nvim-telescope/telescope.nvim", -- optional
+            "ibhagwan/fzf-lua",              -- optional
+        },
+        config = true
+    },
+    {
+        'ThePrimeagen/harpoon',
+        config = function()
+            local mark = require('harpoon.mark')
+            local ui = require('harpoon.ui')
 
-            -- empty setup using defaults
-            require("nvim-tree").setup()
+            vim.keymap.set('n', '<leader>a', mark.add_file)
+            vim.keymap.set('n', '<C-e>', ui.toggle_quick_menu)
+
+            vim.keymap.set('n', '<leader>t1', function()
+                ui.nav_file(1)
+            end)
+            vim.keymap.set('n', '<leader>t2', function()
+                ui.nav_file(2)
+            end)
+            vim.keymap.set('n', '<leader>t3', function()
+                ui.nav_file(3)
+            end)
+            vim.keymap.set('n', '<leader>t4', function()
+                ui.nav_file(4)
+            end)
+            vim.keymap.set('n', '<leader>t5', function()
+                ui.nav_file(5)
+            end)
         end
     }, {
-    'ThePrimeagen/harpoon',
-    config = function()
-        local mark = require('harpoon.mark')
-        local ui = require('harpoon.ui')
-
-        vim.keymap.set('n', '<leader>a', mark.add_file)
-        vim.keymap.set('n', '<C-e>', ui.toggle_quick_menu)
-
-        vim.keymap.set('n', '<leader>1', function()
-            ui.nav_file(1)
-        end)
-        vim.keymap.set('n', '<leader>2', function()
-            ui.nav_file(2)
-        end)
-        vim.keymap.set('n', '<leader>3', function()
-            ui.nav_file(3)
-        end)
-        vim.keymap.set('n', '<leader>4', function()
-            ui.nav_file(4)
-        end)
-        vim.keymap.set('n', '<leader>5', function()
-            ui.nav_file(5)
-        end)
-    end
-}, {
     'tpope/vim-fugitive',
     config = function()
         vim.keymap.set('n', '<leader>gs', vim.cmd.Git)
@@ -344,8 +368,38 @@ require('lazy').setup({ {
     'akinsho/bufferline.nvim',
     dependencies = 'nvim-tree/nvim-web-devicons',
     config = function()
+        require("bufferline").setup({
+            highlights = {
+                tab_separator = {
+                    fg = '#6272A4',
+                    bg = '#6272A4',
+                },
+                separator = {
+                    fg = '#282A36',
+                },
+                close_button_visible = {
+                    fg = '#BD93F9',
+                },
+                close_button_selected = {
+                    fg = '#BD93F9',
+                },
+                indicator_selected = {
+                    fg = '#BD93F9',
+                },
+            },
+            options = {
+                numbers = 'ordinal',
+                indicator = {
+                    icon = ' 󰍟 ',
+                    style = 'icon'
+                },
+                buffer_close_icon = '',
+                modified_icon = '●',
+                close_icon = '',
+            }
+        })
+
         vim.opt.termguicolors = true
-        require("bufferline").setup {}
     end
 }, {
     'lukas-reineke/indent-blankline.nvim',
@@ -481,23 +535,23 @@ require('lazy').setup({ {
     dependencies = { {
         'kevinhwang91/promise-async'
     },
-    {
-        "luukvbaal/statuscol.nvim",
-        config = function()
-            local builtin = require("statuscol.builtin")
-            require("statuscol").setup(
-                {
-                    relculright = true,
-                    segments = {
-                        { text = { builtin.foldfunc },      click = "v:lua.ScFa" },
-                        { text = { "%s" },                  click = "v:lua.ScSa" },
-                        { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" }
+        {
+            "luukvbaal/statuscol.nvim",
+            config = function()
+                local builtin = require("statuscol.builtin")
+                require("statuscol").setup(
+                    {
+                        relculright = true,
+                        segments = {
+                            { text = { builtin.foldfunc },      click = "v:lua.ScFa" },
+                            { text = { "%s" },                  click = "v:lua.ScSa" },
+                            { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" }
+                        }
                     }
-                }
-            )
-        end
+                )
+            end
 
-    } },
+        } },
     config = function()
         vim.o.foldcolumn = '1' -- '0' is not bad
         vim.o.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value
@@ -563,17 +617,32 @@ require('lazy').setup({ {
     end
 } })
 
-function ColorMeUp(color)
-    color = color or "dracula"
-    vim.cmd.colorscheme(color)
-end
-
-ColorMeUp()
-vim.cmd('highlight FoldColumn  guibg=#282A36 guifg=#6272A4 ')
-
 LS = require('luasnip')
 CONFORM = require('conform')
 
 vim.treesitter.query.set("javascript", "injections", "")
 vim.treesitter.query.set("typescript", "injections", "")
 vim.treesitter.query.set("lua", "injections", "")
+
+-- FUNCTION DECLARATIONS
+
+function ColorMeUp(color)
+    color = color or "dracula"
+    vim.cmd.colorscheme(color)
+end
+
+ColorMeUp()
+
+diffview_toggle = function()
+    local lib = require("diffview.lib")
+    local view = lib.get_current_view()
+    if view then
+        -- Current tabpage is a Diffview; close it
+        vim.cmd.DiffviewClose()
+    else
+        -- No open Diffview exists: open a new one
+        vim.cmd.DiffviewOpen()
+    end
+end
+
+vim.cmd('highlight FoldColumn  guibg=#282A36 guifg=#6272A4 ')

@@ -1,19 +1,24 @@
 -- Git blame binds
 vim.keymap.set('n', '<leader>gbo', '<cmd>:GitBlameOpenFileURL<CR>', { silent = true })
 
-vim.keymap.set('n', '<leader>n', ':NvimTreeToggle<CR>', { silent = true, noremap = true })
+vim.keymap.set('n', '<leader>lg', '<cmd>:Neogit<CR>', { noremap = true, silent = true })
+
+vim.keymap.set('n', '<leader>n', ':Neotree reveal toggle float ./ <CR>', { silent = true, noremap = true })
 vim.keymap.set('n', '<C-h>', '<C-w>h', { noremap = true })
 vim.keymap.set('n', '<C-j>', '<C-w>j', { noremap = true })
 vim.keymap.set('n', '<C-k>', '<C-w>k', { noremap = true })
 vim.keymap.set('n', '<C-l>', '<C-w>l', { noremap = true })
 
 -- Bufferline tab switching
-vim.keymap.set('n', '<leader>t1', ':lua require"bufferline".go_to_buffer(1)<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>t2', ':lua require"bufferline".go_to_buffer(2)<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>t3', ':lua require"bufferline".go_to_buffer(3)<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>t4', ':lua require"bufferline".go_to_buffer(4)<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>t5', ':lua require"bufferline".go_to_buffer(5)<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>t6', ':lua require"bufferline".go_to_buffer(6)<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>1', ':lua require"bufferline".go_to_buffer(1)<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>2', ':lua require"bufferline".go_to_buffer(2)<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>3', ':lua require"bufferline".go_to_buffer(3)<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>4', ':lua require"bufferline".go_to_buffer(4)<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>5', ':lua require"bufferline".go_to_buffer(5)<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>6', ':lua require"bufferline".go_to_buffer(6)<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>7', ':lua require"bufferline".go_to_buffer(7)<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>8', ':lua require"bufferline".go_to_buffer(8)<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>9', ':lua require"bufferline".go_to_buffer(9)<CR>', { noremap = true, silent = true })
 
 -- Delete current buffer
 vim.keymap.set('n', '<leader>td', '<cmd>:bd<CR>', { silent = true })
