@@ -370,28 +370,48 @@ require('lazy').setup({ {
     config = function()
         require("bufferline").setup({
             highlights = {
+                fill = {
+                    bg = '#1C1D25',
+                },
+                background = {
+                    bg = '#1C1D25',
+                    fg = '#707493'
+                },
+                diagnostic = {
+                    bg = '#1C1D25',
+                },
+                hint = {
+                    bg = '#1C1D25',
+                },
+                trunc_marker = {
+                    bg = '#1C1D25',
+                },
+                numbers = {
+                    bg = '#1C1D25',
+                },
+                separator_visible = {
+                    fg = '#1C1D25',
+                },
                 tab_separator = {
                     fg = '#6272A4',
                     bg = '#6272A4',
                 },
+                buffer_selected = {
+                    fg = '#BD93F9',
+                },
                 separator = {
-                    fg = '#282A36',
+                    fg = '#1C1D25',
+                    bg = '#1C1D25',
                 },
-                close_button_visible = {
-                    fg = '#BD93F9',
-                },
-                close_button_selected = {
-                    fg = '#BD93F9',
-                },
-                indicator_selected = {
-                    fg = '#BD93F9',
+                close_button = {
+                    bg = '#1C1D25',
                 },
             },
             options = {
                 numbers = 'ordinal',
                 indicator = {
-                    icon = ' 󰍟 ',
-                    style = 'icon'
+                    -- icon = '󰍟',
+                    style = 'none'
                 },
                 buffer_close_icon = '',
                 modified_icon = '●',
