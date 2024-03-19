@@ -21,7 +21,7 @@ vim.keymap.set('n', '<leader>8', ':lua require"bufferline".go_to_buffer(8)<CR>',
 vim.keymap.set('n', '<leader>9', ':lua require"bufferline".go_to_buffer(9)<CR>', { noremap = true, silent = true })
 
 -- Delete current buffer
-vim.keymap.set('n', '<leader>td', '<cmd>:bd<CR>', { silent = true })
+vim.keymap.set('n', '<leader>x', '<cmd>:bd<CR>', { silent = true })
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
@@ -56,7 +56,7 @@ vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
-vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+-- vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.config/nvim/lua/plugin_loader.lua<CR>");
 vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");

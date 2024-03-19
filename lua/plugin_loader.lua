@@ -218,9 +218,7 @@ require('lazy').setup(
                     vim.keymap.set("n", "<leader>vca", function()
                         vim.lsp.buf.code_action()
                     end, opts)
-                    vim.keymap.set("n", "<leader>vrr", function()
-                        vim.lsp.buf.references()
-                    end, opts)
+                    vim.keymap.set("n", "<leader>vrr", "<cmd>Telescope lsp_references<CR>", opts)
                     vim.keymap.set("n", "<leader>vrn", function()
                         vim.lsp.buf.rename()
                     end, opts)
@@ -495,8 +493,8 @@ require('lazy').setup(
                     float_opts = {
                         border = 'single',
                         width = math.floor(vim.o.columns * 0.8), -- 80% width
-                        height = math.floor(vim.o.lines * 0.6), -- 60% height
-                        winblend = 0,                        -- Transparency level
+                        height = math.floor(vim.o.lines * 0.6),  -- 60% height
+                        winblend = 0,                            -- Transparency level
                         highlights = {
                             border = "Normal"
                         }
@@ -595,7 +593,7 @@ require('lazy').setup(
                 } },
             config = function()
                 vim.o.foldcolumn = '1' -- '0' is not bad
-                vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+                vim.o.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value
                 vim.o.foldlevelstart = 99
                 vim.o.foldenable = true
                 vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
@@ -646,9 +644,9 @@ require('lazy').setup(
             'kawre/leetcode.nvim',
             build = ':TSUpdate html',
             dependencies = { 'nvim-telescope/telescope.nvim', 'nvim-lua/plenary.nvim', -- required by telescope
-                'MunifTanjim/nui.nvim',                                            -- optional
+                'MunifTanjim/nui.nvim',                                                -- optional
                 'nvim-treesitter/nvim-treesitter', 'rcarriga/nvim-notify',
-                'nvim-tree/nvim-web-devicons'                                      -- previously nvim-tree/nvim-web-devicons
+                'nvim-tree/nvim-web-devicons'                                          -- previously nvim-tree/nvim-web-devicons
             },
             config = function()
                 require('leetcode').setup {
