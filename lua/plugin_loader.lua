@@ -84,30 +84,30 @@ require('lazy').setup(
         {
             'sheerun/vim-polyglot'
         },
-        -- {
-        --     'nvim-treesitter/nvim-treesitter',
-        --     build = ':TSUpdate',
-        --     config = function()
-        --         require 'nvim-treesitter.configs'.setup {
-        --             ensure_installed = 'all',
-        --             sync_install = false,
-        --             auto_install = true,
-        --             highlight = {
-        --                 enable = true,
-        --                 additional_vim_regex_highlighting = false
-        --             },
-        --             indent = {
-        --                 enable = false,
-        --             },
-        --             incremental_selection = {
-        --                 enable = false,
-        --             },
-        --             textobjects = {
-        --                 enable = false,
-        --             },
-        --         }
-        --     end
-        -- },
+        {
+            'nvim-treesitter/nvim-treesitter',
+            build = ':TSUpdate',
+            config = function()
+                require 'nvim-treesitter.configs'.setup {
+                    ensure_installed = 'all',
+                    sync_install = false,
+                    auto_install = true,
+                    highlight = {
+                        enable = true,
+                        additional_vim_regex_highlighting = false
+                    },
+                    indent = {
+                        enable = false,
+                    },
+                    incremental_selection = {
+                        enable = false,
+                    },
+                    textobjects = {
+                        enable = false,
+                    },
+                }
+            end
+        },
         {
             "nvim-neo-tree/neo-tree.nvim",
             branch = "v3.x",
@@ -738,3 +738,16 @@ diffview_toggle = function()
 end
 
 vim.cmd('highlight FoldColumn  guibg=#282A36 guifg=#6272A4 ')
+
+vim.api.nvim_create_autocmd("BufReadPost", {
+    callback = function()
+        local threshold = 5000
+        local line_count = vim.api.nvim_buf_line_count(0)
+
+        if line_count > threshold then
+            vim.cmd([[TSBufDisable highlight]])
+        else
+            vim.cmd([[TSBufEnable highlight]])
+        end
+    end
+})

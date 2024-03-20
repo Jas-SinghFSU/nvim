@@ -1,7 +1,9 @@
--- Git blame binds
+-- Git binds
 vim.keymap.set('n', '<leader>gbo', '<cmd>:GitBlameOpenFileURL<CR>', { silent = true })
-
 vim.keymap.set('n', '<leader>lg', '<cmd>:Neogit<CR>', { noremap = true, silent = true })
+
+-- Rename func/variable
+vim.keymap.set('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', {noremap = true, silent = true})
 
 vim.keymap.set('n', '<leader>n', ':Neotree reveal toggle float ./ <CR>', { silent = true, noremap = true })
 vim.keymap.set('n', '<C-h>', '<C-w>h', { noremap = true })
@@ -40,9 +42,6 @@ vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
-
--- remap normal mode to Alt + Space
-vim.keymap.set("i", "<A-Space>", "<Esc>")
 
 vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
