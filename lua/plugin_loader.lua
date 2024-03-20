@@ -82,29 +82,32 @@ require('lazy').setup(
             "sindrets/diffview.nvim"
         },
         {
-            'nvim-treesitter/nvim-treesitter',
-            build = ':TSUpdate',
-            config = function()
-                require 'nvim-treesitter.configs'.setup {
-                    ensure_installed = 'all',
-                    sync_install = false,
-                    auto_install = true,
-                    highlight = {
-                        enable = true,
-                        additional_vim_regex_highlighting = false
-                    },
-                    indent = {
-                        enable = false,
-                    },
-                    incremental_selection = {
-                        enable = false,
-                    },
-                    textobjects = {
-                        enable = false,
-                    },
-                }
-            end
+            'sheerun/vim-polyglot'
         },
+        -- {
+        --     'nvim-treesitter/nvim-treesitter',
+        --     build = ':TSUpdate',
+        --     config = function()
+        --         require 'nvim-treesitter.configs'.setup {
+        --             ensure_installed = 'all',
+        --             sync_install = false,
+        --             auto_install = true,
+        --             highlight = {
+        --                 enable = true,
+        --                 additional_vim_regex_highlighting = false
+        --             },
+        --             indent = {
+        --                 enable = false,
+        --             },
+        --             incremental_selection = {
+        --                 enable = false,
+        --             },
+        --             textobjects = {
+        --                 enable = false,
+        --             },
+        --         }
+        --     end
+        -- },
         {
             "nvim-neo-tree/neo-tree.nvim",
             branch = "v3.x",
@@ -662,6 +665,46 @@ require('lazy').setup(
         },
         {
             'tpope/vim-surround'
+        },
+        {
+            "folke/noice.nvim",
+            event = "VeryLazy",
+            opts = {
+                messages = {
+                    enabled = false
+                },
+                popupmenu = {
+                    enabled = false
+                },
+                notify = {
+                    enabled = false
+                },
+                lsp = {
+                    progress = {
+                        enabled = false
+                    },
+                    hover = {
+                        enabled = false
+                    },
+                    signature = {
+                        enabled = false
+                    },
+                    message = {
+                        enabled = false
+                    },
+                },
+                message = {
+                    enabled = false
+                },
+                health = {
+                    enabled = false
+                },
+
+            },
+            dependencies = {
+                "MunifTanjim/nui.nvim",
+                "rcarriga/nvim-notify",
+            }
         }
     }
 )
