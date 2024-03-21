@@ -665,16 +665,16 @@ require('lazy').setup(
                                 key = 'f',
                             },
                             {
-                                desc = ' Apps',
+                                desc = '󰬔 Mason',
                                 group = 'DiagnosticHint',
-                                action = 'Telescope app',
-                                key = 'a',
+                                action = 'Mason',
+                                key = 'm',
                             },
                             {
-                                desc = ' Dotfiles',
+                                desc = ' Config',
                                 group = 'Error',
-                                action = 'Telescope dotfiles',
-                                key = 'd',
+                                action = 'Telescope find_files cwd=~/.config/nvim',
+                                key = 'c',
                             },
                         },
                         packages = {
@@ -689,7 +689,8 @@ require('lazy').setup(
                             action = 'Telescope find_files cwd='
                         },
                         mru = {
-                            icon = '󰈮 '
+                            icon = '󰈮 ',
+                            label = 'Recent Files',
                         },
                         footer = { '' }
                     }
