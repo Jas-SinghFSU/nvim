@@ -78,4 +78,6 @@ vim.keymap.set({ "i", "s" }, "<C-E>", function()
 end, { silent = true })
 
 
-vim.keymap.set('n', '<leader><BS>', ':Dashboard<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader><CR>', ':Dashboard<CR>', { noremap = true, silent = true })
+
+vim.keymap.set("n", "<leader>fml", "<cmd>CellularAutomaton make_it_rain<CR>")
