@@ -68,16 +68,16 @@ require('lazy').setup(
                 vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
             end
         },
-        {
-            "iamcco/markdown-preview.nvim",
-            cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-            build = "cd app && npm install",
-            init = function()
-                vim.g.mkdp_filetypes = { "markdown" }
-                -- vim.g.mkdp_browser = '/usr/share/applications/microsoft-edge.desktop'
-            end,
-            ft = { "markdown" },
-        },
+        -- {
+        --     "iamcco/markdown-preview.nvim",
+        --     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+        --     build = "cd app && npm install",
+        --     init = function()
+        --         vim.g.mkdp_filetypes = { "markdown" }
+        --         -- vim.g.mkdp_browser = '/usr/share/applications/microsoft-edge.desktop'
+        --     end,
+        --     ft = { "markdown" },
+        -- },
         {
             "sindrets/diffview.nvim"
         },
@@ -638,8 +638,78 @@ require('lazy').setup(
             event = 'VimEnter',
             config = function()
                 require('dashboard').setup {
-                    -- config
+                    theme = 'hyper',
+                    config = {
+                        header = {
+                            "     ██╗ █████╗ ███████╗██╗  ██╗██╗██████╗ ",
+                            "     ██║██╔══██╗██╔════╝██║ ██╔╝██║██╔══██╗",
+                            "     ██║███████║███████╗█████╔╝ ██║██████╔╝",
+                            "██   ██║██╔══██║╚════██║██╔═██╗ ██║██╔══██╗",
+                            "╚█████╔╝██║  ██║███████║██║  ██╗██║██║  ██║",
+                            " ╚════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝╚═╝  ╚═╝",
+                            "                                            "
+                        },
+                        shortcut = {
+                            {
+                                icon = '󰊳 ',
+                                desc = 'Update',
+                                group = 'Function',
+                                action = 'Lazy update',
+                                key = 'u'
+                            },
+                            {
+                                icon = ' ',
+                                desc = 'Files',
+                                group = 'Label',
+                                action = 'Telescope find_files',
+                                key = 'f',
+                            },
+                            {
+                                desc = ' Apps',
+                                group = 'DiagnosticHint',
+                                action = 'Telescope app',
+                                key = 'a',
+                            },
+                            {
+                                desc = ' Dotfiles',
+                                group = 'Error',
+                                action = 'Telescope dotfiles',
+                                key = 'd',
+                            },
+                        },
+                        packages = {
+                            enable = true
+                        },
+                        project = {
+                            enable = true,
+                            limit = 8,
+                            icon = ' ',
+                            group = 'String',
+                            label = 'Recent Projects',
+                            action = 'Telescope find_files cwd='
+                        },
+                        mru = {
+                            icon = '󰈮 '
+                        },
+                        footer = { '' }
+                    }
                 }
+
+                vim.api.nvim_command([[
+                    highlight DashboardHeader guifg=#BD93F9
+                    ]])
+                vim.api.nvim_command([[
+                    highlight DashboardProjectTitle guifg=#FFB86C
+                    ]])
+                vim.api.nvim_command([[
+                    highlight DashboardProjectIcon guifg=#FFB86C
+                    ]])
+                vim.api.nvim_command([[
+                    highlight DashboardFiles guifg=#F1FA8C
+                    ]])
+                vim.api.nvim_command([[
+                    highlight DashboardMruTitle guifg=#FF79C6
+                    ]])
             end,
             dependencies = { 'nvim-tree/nvim-web-devicons' }
         },
