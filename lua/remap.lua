@@ -76,3 +76,6 @@ vim.keymap.set({ "i", "s" }, "<C-E>", function()
         LS.change_choice(1)
     end
 end, { silent = true })
+
+
+vim.keymap.set('n', '<leader><BS>', ':Dashboard<CR>', { noremap = true, silent = true })

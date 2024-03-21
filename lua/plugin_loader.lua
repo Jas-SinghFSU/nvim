@@ -121,6 +121,17 @@ require('lazy').setup(
             config = function()
                 require("neo-tree").setup({
                     close_if_last_window = false,
+                    buffers = {
+                        follow_current_file = {
+                            enabled = true,
+                        }
+                    },
+                    file_system = {
+                        follow_current_file = {
+                            enabled = true,
+                        }
+                    },
+                    hijack_netrw_behavior = "open_default",
                 })
             end
         },
@@ -691,6 +702,7 @@ require('lazy').setup(
                         mru = {
                             icon = '󰈮 ',
                             label = 'Recent Files',
+                            cwd_only = true
                         },
                         footer = { '' }
                     }
