@@ -456,6 +456,7 @@ require('lazy').setup(
                     },
                     exclude = { filetypes = { "dashboard" } }
                 })
+                vim.cmd [[highlight IblScope guifg=#BD93F9 gui=nocombine]]
             end
         },
         {
@@ -504,6 +505,9 @@ require('lazy').setup(
                     open_mapping = '<A-t>',
                     shell = vim.o.shell,
                     direction = 'float',
+                    highlights = {
+                        FloatBorder = { guifg = '#BD93F9' },
+                    },
                     float_opts = {
                         border = 'single',
                         width = math.floor(vim.o.columns * 0.8), -- 80% width
