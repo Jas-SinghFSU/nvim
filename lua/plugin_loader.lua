@@ -8,20 +8,36 @@ vim.opt.rtp:prepend(lazypath)
 
 vim.g.mapleader = " "
 
+vim.opt.termguicolors = true
+
 require('remap')
 require('set')
 
 require('lazy').setup(
     {
         {
-            'maxmx03/dracula.nvim',
+            'Jas-SinghFSU/drappuccin',
             config = function()
                 require("dracula").setup {
                     plugins = {
                         ["todo-comments.nvim"] = false,
-                        ["indent-blankline.nvim"] = false
+                        ["indent-blankline.nvim"] = false,
                     }
                 }
+            end
+        },
+        {
+            "catppuccin/nvim",
+            name = "catppuccin",
+            priority = 1000,
+            config = function()
+                require('catppuccin').setup({
+                    integrations = {
+                        neotree = true,
+                        harpoon = true,
+                        noice = true,
+                    }
+                })
             end
         },
         {
@@ -324,40 +340,49 @@ require('lazy').setup(
             'nvim-lualine/lualine.nvim',
             dependencies = {
                 'nvim-tree/nvim-web-devicons',
-                opt = true,
-                config = function()
-                    local git_blame = require('gitblame')
+            },
+            opt = true,
+            config = function()
+                local git_blame = require('gitblame')
 
-                    require('lualine').setup {
-                        options = {
-                            icons_enabled = true,
-                            theme = 'auto',
-                            component_separators = {
-                                left = '',
-                                right = ''
-                            },
-                            section_separators = {
-                                left = '',
-                                right = ''
-                            },
-                            disabled_filetypes = {
-                                statusline = {},
-                                winbar = {}
-                            },
-                            ignore_focus = {},
-                            always_divide_middle = true,
-                            globalstatus = false,
-                            refresh = {
-                                statusline = 1000,
-                                tabline = 1000,
-                                winbar = 1000
+                require('lualine').setup {
+                    options = {
+                        icons_enabled = true,
+                        theme = 'catppuccin',
+                        component_separators = {
+                            left = '',
+                            right = ''
+                        },
+                        section_separators = {
+                            left = '',
+                            right = ''
+                        },
+                        disabled_filetypes = {
+                            statusline = {},
+                            winbar = {}
+                        },
+                        ignore_focus = {},
+                        always_divide_middle = true,
+                        globalstatus = false,
+                        refresh = {
+                            statusline = 1000,
+                            tabline = 1000,
+                            winbar = 1000
+                        }
+                    },
+                    sections = {
+                        lualine_a = { 'mode' },
+                        lualine_b = { 'branch', 'diff', 'diagnostics' },
+                        lualine_c = {
+                            {
+                                color = {
+                                    fg = '#1e1e2e',
+                                    bg = '#1e1e2e'
+                                }
                             }
                         },
-                        sections = {
-                            lualine_a = { 'mode' },
-                            lualine_b = { 'branch', 'diff', 'diagnostics' },
-                            lualine_c = {},
-                            lualine_x = { {
+                        lualine_x = {
+                            {
                                 git_blame.get_current_blame_text,
                                 cond = git_blame.is_blame_text_available,
                                 draw_empty = false,
@@ -367,27 +392,27 @@ require('lazy').setup(
                                 },
                                 color = {
                                     fg = '#282A36',
-                                    bg = '#8BE9FD'
+                                    bg = '#eba0ac'
                                 }
-                            } },
-                            lualine_y = { 'progress' },
-                            lualine_z = { 'location' }
+                            }
                         },
-                        inactive_sections = {
-                            lualine_a = {},
-                            lualine_b = {},
-                            lualine_c = { 'filename' },
-                            lualine_x = { 'location' },
-                            lualine_y = {},
-                            lualine_z = {}
-                        },
-                        tabline = {},
-                        winbar = {},
-                        inactive_winbar = {},
-                        extensions = {}
-                    }
-                end
-            }
+                        lualine_y = { 'progress' },
+                        lualine_z = { 'location' }
+                    },
+                    inactive_sections = {
+                        lualine_a = {},
+                        lualine_b = {},
+                        lualine_c = { 'filename' },
+                        lualine_x = { 'location' },
+                        lualine_y = {},
+                        lualine_z = {}
+                    },
+                    tabline = {},
+                    winbar = {},
+                    inactive_winbar = {},
+                    extensions = {}
+                }
+            end
         },
         {
             'akinsho/bufferline.nvim',
@@ -396,26 +421,26 @@ require('lazy').setup(
                 require("bufferline").setup({
                     highlights = {
                         fill = {
-                            bg = '#1C1D25',
+                            bg = '#181825',
                         },
                         background = {
-                            bg = '#1C1D25',
+                            bg = '#181825',
                             fg = '#707493'
                         },
                         diagnostic = {
-                            bg = '#1C1D25',
+                            bg = '#181825',
                         },
                         hint = {
-                            bg = '#1C1D25',
+                            bg = '#181825',
                         },
                         trunc_marker = {
-                            bg = '#1C1D25',
+                            bg = '#181825',
                         },
                         numbers = {
-                            bg = '#1C1D25',
+                            bg = '#181825',
                         },
                         separator_visible = {
-                            fg = '#1C1D25',
+                            fg = '#181825',
                         },
                         tab_separator = {
                             fg = '#6272A4',
@@ -425,11 +450,11 @@ require('lazy').setup(
                             fg = '#BD93F9',
                         },
                         separator = {
-                            fg = '#1C1D25',
-                            bg = '#1C1D25',
+                            fg = '#181825',
+                            bg = '#181825',
                         },
                         close_button = {
-                            bg = '#1C1D25',
+                            bg = '#181825',
                         },
                     },
                     options = {
@@ -456,7 +481,9 @@ require('lazy').setup(
                     },
                     exclude = { filetypes = { "dashboard" } }
                 })
-                vim.cmd [[highlight IblScope guifg=#BD93F9 gui=nocombine]]
+
+                -- Indent Blankline Scope highlight
+                vim.api.nvim_command([[ highlight IblScope guifg=#BD93F9 gui=nocombine ]])
             end
         },
         {
@@ -503,7 +530,7 @@ require('lazy').setup(
                 require("toggleterm").setup {
                     shade_terminals = false,
                     open_mapping = '<A-t>',
-                    shell = vim.o.shell,
+                    shell = 'zsh',
                     direction = 'float',
                     highlights = {
                         FloatBorder = { guifg = '#BD93F9' },
@@ -711,22 +738,6 @@ require('lazy').setup(
                         footer = { '' }
                     }
                 }
-
-                vim.api.nvim_command([[
-                    highlight DashboardHeader guifg=#BD93F9
-                    ]])
-                vim.api.nvim_command([[
-                    highlight DashboardProjectTitle guifg=#FFB86C
-                    ]])
-                vim.api.nvim_command([[
-                    highlight DashboardProjectIcon guifg=#FFB86C
-                    ]])
-                vim.api.nvim_command([[
-                    highlight DashboardFiles guifg=#F1FA8C
-                    ]])
-                vim.api.nvim_command([[
-                    highlight DashboardMruTitle guifg=#FF79C6
-                    ]])
             end,
             dependencies = { 'nvim-tree/nvim-web-devicons' }
         },
@@ -793,7 +804,9 @@ require('lazy').setup(
                 "rcarriga/nvim-notify",
             }
         },
-        'eandrju/cellular-automaton.nvim'
+        {
+            'eandrju/cellular-automaton.nvim'
+        }
     }
 )
 
@@ -805,13 +818,7 @@ vim.treesitter.query.set("typescript", "injections", "")
 vim.treesitter.query.set("lua", "injections", "")
 
 -- FUNCTION DECLARATIONS
-
-function ColorMeUp(color)
-    color = color or "dracula"
-    vim.cmd.colorscheme(color)
-end
-
-ColorMeUp()
+vim.cmd.colorscheme "dracula"
 
 diffview_toggle = function()
     local lib = require("diffview.lib")
@@ -825,8 +832,6 @@ diffview_toggle = function()
     end
 end
 
-vim.cmd('highlight FoldColumn  guibg=#282A36 guifg=#6272A4 ')
-
 vim.api.nvim_create_autocmd("BufReadPost", {
     callback = function()
         local threshold = 5000
@@ -839,3 +844,38 @@ vim.api.nvim_create_autocmd("BufReadPost", {
         end
     end
 })
+
+-------------------------
+-- Highlight Overrides --
+-------------------------
+
+-- Terminal
+vim.api.nvim_command([[ highlight Terminal guifg=#1e1e2e ]])
+
+-- Dashboard Highlights
+vim.api.nvim_command([[ highlight DashboardHeader guifg=#eba0ac ]])
+vim.api.nvim_command([[ highlight DashboardProjectTitle guifg=#FFB86C ]])
+vim.api.nvim_command([[ highlight DashboardProjectIcon guifg=#FFB86C ]])
+vim.api.nvim_command([[ highlight DashboardFiles guifg=#F1FA8C ]])
+vim.api.nvim_command([[ highlight DashboardMruTitle guifg=#FF79C6 ]])
+
+-- Standard Background Color
+vim.api.nvim_command([[ highlight Normal guibg=#1e1e2e ctermbg=235]])
+vim.api.nvim_command([[ highlight NonText guibg=#1e1e2e ctermbg=235]])
+
+-- Gutter/Column Highlights
+vim.api.nvim_command([[ highlight FoldColumn  guibg=#1e1e2e guifg=#6272A4 ]])
+vim.api.nvim_command([[ highlight LineNr guibg=#1e1e2e ctermbg=235]])
+vim.api.nvim_command([[ highlight CursorLineNr guibg=#1e1e2e ctermbg=235]])
+
+-- Telescope
+vim.api.nvim_command([[ highlight TelescopePromptNormal guibg=#1e1e2e ]])
+vim.api.nvim_command([[ highlight TelescopeResultsNormal guibg=#1e1e2e ]])
+vim.api.nvim_command([[ highlight TelescopePreviewNormal guibg=#1e1e2e ]])
+vim.api.nvim_command([[ highlight TelescopeSelection guibg=#313244 ]])
+
+-- Neotree
+vim.api.nvim_command([[ highlight NeoTreeNormal guibg=#1e1e2e ]])
+vim.api.nvim_command([[ highlight NeoTreeTitleBar guibg=#181825 ]])
+vim.api.nvim_command([[ highlight NeoTreeCursorLine guibg=#313244 ]])
+vim.api.nvim_command([[ highlight NeoTreeFloatBorder guibg=#181825 guifg=#181825 ]])

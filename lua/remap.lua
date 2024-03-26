@@ -22,6 +22,9 @@ vim.keymap.set('n', '<leader>7', ':lua require"bufferline".go_to_buffer(7)<CR>',
 vim.keymap.set('n', '<leader>8', ':lua require"bufferline".go_to_buffer(8)<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>9', ':lua require"bufferline".go_to_buffer(9)<CR>', { noremap = true, silent = true })
 
+-- Vertical Split
+vim.keymap.set('n', '<leader>vs', '<cmd>:vsp<CR>', { silent = true })
+
 -- Delete current buffer
 vim.keymap.set('n', '<leader>x', '<cmd>:bd<CR>', { silent = true })
 
@@ -34,13 +37,10 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
--- greatest remap ever
+-- Copy and Paste keybinds
 vim.keymap.set("x", "p", [["_dP]])
-
--- next greatest remap ever : asbjornHaland
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
-
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 vim.keymap.set("n", "Q", "<nop>")
